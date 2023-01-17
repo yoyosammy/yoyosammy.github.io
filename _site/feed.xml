@@ -1,5 +1,27 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2023-01-16T17:36:18-05:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Site11</title><subtitle>An website.</subtitle><author><name>yoyosammy</name><email>phrackingbits@gmail.com</email></author><entry><title type="html">TP-Link Kasa Indoor Pan/Tilt Smart Security Camera EC70</title><link href="http://localhost:4000/EC70/" rel="alternate" type="text/html" title="TP-Link Kasa Indoor Pan/Tilt Smart Security Camera EC70" /><published>2023-01-14T00:00:00-05:00</published><updated>2023-01-14T00:00:00-05:00</updated><id>http://localhost:4000/EC70</id><content type="html" xml:base="http://localhost:4000/EC70/"><![CDATA[<h1 id="reverse-engineering-the-ec70-ip-camera">Reverse Engineering the EC70 IP Camera</h1>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2023-01-16T21:54:22-05:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Site11</title><subtitle>An website.</subtitle><author><name>yoyosammy</name><email>phrackingbits@gmail.com</email></author><entry><title type="html">TP-Link Kasa Indoor Pan/Tilt Smart Security Camera EC70</title><link href="http://localhost:4000/EC70/" rel="alternate" type="text/html" title="TP-Link Kasa Indoor Pan/Tilt Smart Security Camera EC70" /><published>2023-01-14T00:00:00-05:00</published><updated>2023-01-14T00:00:00-05:00</updated><id>http://localhost:4000/EC70</id><content type="html" xml:base="http://localhost:4000/EC70/"><![CDATA[<h1 id="reverse-engineering-the-ec70-ip-camera">Reverse Engineering the EC70 IP Camera</h1>
 
 <p>I decided I wanted to start looking into IP cameras and this one was
 relatively cheap and had good reviews so I figured it was a good place
-to start.</p>]]></content><author><name>yoyosammy</name><email>phrackingbits@gmail.com</email></author><summary type="html"><![CDATA[Reverse Engineering the EC70 IP Camera]]></summary></entry></feed>
+to start.</p>
+
+<p><img src="../assets/images/camera.jpg" alt="EC70" /></p>
+
+<p>After opening the camera up and inspecting the board I found some copper
+test points that vaguely look like they might be uart and next to it
+some port labeled ETH so maybe ethernet? I tried connecting an alligator
+clip to flash chip in order to dump flash but I continuously kept
+getting “chip is blank” so either I don’t know how to hook up the chip
+or there is something stopping me from dumping flash.  So I guess it was
+back to seeing if those test pins were uart or not.  I did some
+connectivity tests and determined one to be ground (TP13) which was a good
+start.  I connected my uart cable to a ground elsewhere on the board, powered on the board and
+then held the RX wire onto each of the other test points until TP11 started
+printing text.  So I was able to read the uart but I cannot type and
+hold two wires on the RX and TX so I got and clip onto the uart TX and
+then booted the camera up.  Then whenever I wanted to send a command I
+manually held the TX wire to the RX test point (TP12).</p>
+
+<p><img src="../assets/images/uartConnect.JPG" alt="uart" /></p>
+
+<p>I also accidentally pulled the power off of the board so I had to
+manually hook them up to power the device.</p>]]></content><author><name>yoyosammy</name><email>phrackingbits@gmail.com</email></author><summary type="html"><![CDATA[Reverse Engineering the EC70 IP Camera]]></summary></entry></feed>
