@@ -1,6 +1,6 @@
 var store = [{
         "title": "TP-Link Kasa Indoor Pan/Tilt Smart Security Camera EC70",
-        "excerpt":"Reverse Engineering the EC70 IP Camera I decided I wanted to start looking into IP cameras and this one was relatively cheap and had good reviews so I figured it was a good place to start. After opening the camera up and inspecting the board I found some copper test...","categories": [],
+        "excerpt":"Reverse Engineering the EC70 IP Camera I decided I wanted to start looking into IP cameras and this one was relatively cheap and had good reviews so I figured it was a good place to start. Getting a shell After opening the camera up and inspecting the board I found...","categories": [],
         "tags": [],
         "url": "/EC70/",
         "teaser": null

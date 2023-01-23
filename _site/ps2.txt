@@ -1,0 +1,82 @@
+  PID USER       VSZ STAT COMMAND
+    1 root      1280 S    /sbin/procd
+    2 root         0 SW   [kthreadd]
+    3 root         0 SW   [ksoftirqd/0]
+    4 root         0 SW   [kworker/0:0]
+    5 root         0 SW<  [kworker/0:0H]
+    6 root         0 SW   [kworker/u2:0]
+    7 root         0 SW   [rcu_preempt]
+    8 root         0 SW   [rcu_sched]
+    9 root         0 SW   [rcu_bh]
+   10 root         0 SW<  [lru-add-drain]
+   11 root         0 SW   [watchdog/0]
+   12 root         0 SW   [kdevtmpfs]
+   13 root         0 SW<  [netns]
+   14 root         0 SW   [kworker/u2:1]
+  147 root         0 SW   [oom_reaper]
+  148 root         0 SW<  [writeback]
+  150 root         0 SW   [kcompactd0]
+  151 root         0 SW<  [crypto]
+  152 root         0 SW<  [bioset]
+  154 root         0 SW<  [kblockd]
+  178 root         0 SW   [kworker/0:1]
+  179 root         0 SW<  [cfg80211]
+  181 root         0 SW<  [watchdogd]
+  204 root         0 SW   [kswapd0]
+  280 root         0 SW   [irq/59-GPIO66]
+  283 root         0 SW<  [bioset]
+  294 root         0 DW   [ehci_monitor]
+  306 root         0 SW   [urdma_tx_thread]
+  329 root         0 SW   [kworker/0:2]
+  333 root         0 SW<  [bioset]
+  338 root         0 SW<  [bioset]
+  343 root         0 SW<  [bioset]
+  348 root         0 SW<  [bioset]
+  353 root         0 SW<  [bioset]
+  358 root         0 SW<  [bioset]
+  363 root         0 SW<  [bioset]
+  368 root         0 SW<  [bioset]
+  373 root         0 SW<  [bioset]
+  378 root         0 SW<  [bioset]
+  383 root         0 SW<  [bioset]
+  394 root         0 SW   [monitor_temp]
+  406 root         0 SW<  [kworker/0:1H]
+  409 root         0 SWN  [jffs2_gcd_mtd5]
+  481 root       816 S    /sbin/ubusd
+  482 root       992 S    /bin/ash --login
+ 1234 root         0 SW   [RTW_CMD_THREAD]
+ 1425 root      1328 S    /sbin/ledd
+ 1462 root      2688 S    /sbin/wirelessd
+ 1474 root      2236 S    /sbin/utplogd
+ 1558 root         0 SW   [SensorIfThreadW]
+ 1569 root         0 SW   [IspDriverThread]
+ 1604 root         0 SW   [kworker/u2:2]
+ 1642 root      1228 S    wpa_supplicant -D nl80211,wext -i wlan0 -b br-lan -c
+ 1700 root     10892 S    /usr/bin/timed -f
+ 1713 root         0 SW<  [bioset]
+ 1714 root         0 SW   [mmcqd/0]
+ 1719 root     26644 S    /usr/bin/media-service -f
+ 1743 root     20012 S    /usr/bin/storaged -f
+ 1763 root      3188 S    /usr/bin/alarm_delivery -f
+ 1780 root      3472 S    /usr/bin/camScheduled
+ 1823 root      6820 S    /usr/bin/relayd
+ 1835 root      2852 S    /usr/bin/ucloud
+ 1861 root      2836 S    /usr/bin/ulinkied
+ 1876 root      4532 S    /usr/bin/p2pd
+ 1956 root         0 DWN  [mi_log]
+ 1972 root         0 DW   [vif0_P0_MAIN]
+ 1976 root         0 DW   [vif1_P0_MAIN]
+ 1978 root         0 DW   [vpe0_P0_MAIN]
+ 1979 root         0 DW   [vpe0_P1_MAIN]
+ 1981 root         0 DW   [vpe0_P2_MAIN]
+ 1985 root         0 DWN  [VEP_DumpTaskThr]
+ 1989 root         0 DW   [venc0_P0_MAIN]
+ 1991 root         0 DW   [venc1_P0_MAIN]
+ 2009 root         0 SW   [RGN BUF WQ]
+ 2013 root         0 DW   [ai0_P0_MAIN]
+ 2158 root       988 S    udhcpc -p /var/run/udhcpc-br-lan.pid -s /lib/netconf
+ 2168 root      8392 S    /usr/bin/speaker
+ 2194 root     19768 S    /usr/bin/detection -f
+ 2266 root         0 DW   [divp0_P0_MAIN]
+ 2884 root       988 R    ps
+

@@ -6,6 +6,8 @@ to start.</p>
 
 <p><img src="../assets/images/camera.jpg" alt="EC70" /></p>
 
+<h2 id="getting-a-shell">Getting a shell</h2>
+
 <p>After opening the camera up and inspecting the board I found some copper
 test points that vaguely look like they might be uart and next to it
 some port labeled ETH so maybe ethernet? I tried connecting an alligator
@@ -25,3 +27,249 @@ manually held the TX wire to the RX test point (TP12).</p>
 
 <p>I also accidentally pulled the power off of the board so I had to
 manually hook them up to power the device.</p>
+
+<h2 id="unknown-title">unknown title</h2>
+
+<p>Now that I got a shell I was able to view running processes and netstat
+so that I can figure out what I want to start looking into.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>root@EC70:/# ps
+
+  PID USER       VSZ STAT COMMAND
+    1 root      1280 S    /sbin/procd
+    2 root         0 SW   <span class="o">[</span>kthreadd]
+    3 root         0 SW   <span class="o">[</span>ksoftirqd/0]
+    4 root         0 SW   <span class="o">[</span>kworker/0:0]
+    5 root         0 SW&lt;  <span class="o">[</span>kworker/0:0H]
+    6 root         0 SW   <span class="o">[</span>kworker/u2:0]
+    7 root         0 SW   <span class="o">[</span>rcu_preempt]
+    8 root         0 SW   <span class="o">[</span>rcu_sched]
+    9 root         0 SW   <span class="o">[</span>rcu_bh]
+   10 root         0 SW&lt;  <span class="o">[</span>lru-add-drain]
+   11 root         0 SW   <span class="o">[</span>watchdog/0]
+   12 root         0 SW   <span class="o">[</span>kdevtmpfs]
+   13 root         0 SW&lt;  <span class="o">[</span>netns]
+   14 root         0 SW   <span class="o">[</span>kworker/u2:1]
+  147 root         0 SW   <span class="o">[</span>oom_reaper]
+  148 root         0 SW&lt;  <span class="o">[</span>writeback]
+  150 root         0 SW   <span class="o">[</span>kcompactd0]
+  151 root         0 SW&lt;  <span class="o">[</span>crypto]
+  152 root         0 SW&lt;  <span class="o">[</span>bioset]
+  154 root         0 SW&lt;  <span class="o">[</span>kblockd]
+  178 root         0 SW   <span class="o">[</span>kworker/0:1]
+  179 root         0 SW&lt;  <span class="o">[</span>cfg80211]
+  181 root         0 SW&lt;  <span class="o">[</span>watchdogd]
+  204 root         0 SW   <span class="o">[</span>kswapd0]
+  279 root         0 SW   <span class="o">[</span>irq/59-GPIO66]
+  289 root         0 DW   <span class="o">[</span>ehci_monitor]
+  301 root         0 SW   <span class="o">[</span>urdma_tx_thread]
+  324 root         0 SW   <span class="o">[</span>kworker/0:2]
+  328 root         0 SW&lt;  <span class="o">[</span>bioset]
+  333 root         0 SW&lt;  <span class="o">[</span>bioset]
+  338 root         0 SW&lt;  <span class="o">[</span>bioset]
+  343 root         0 SW&lt;  <span class="o">[</span>bioset]
+  348 root         0 SW&lt;  <span class="o">[</span>bioset]
+  353 root         0 SW&lt;  <span class="o">[</span>bioset]
+  358 root         0 SW&lt;  <span class="o">[</span>bioset]
+  363 root         0 SW&lt;  <span class="o">[</span>bioset]
+  368 root         0 SW&lt;  <span class="o">[</span>bioset]
+  373 root         0 SW&lt;  <span class="o">[</span>bioset]
+  378 root         0 SW&lt;  <span class="o">[</span>bioset]
+  389 root         0 SW   <span class="o">[</span>monitor_temp]
+  401 root         0 SW&lt;  <span class="o">[</span>kworker/0:1H]
+  404 root         0 SWN  <span class="o">[</span>jffs2_gcd_mtd5]
+  475 root       812 S    /sbin/ubusd
+  476 root       992 S    /bin/ash <span class="nt">--login</span>
+  980 root      1328 S    /sbin/ledd
+ 1052 root      2628 S    /sbin/wirelessd
+ 1059 root      2232 S    /sbin/utplogd
+ 1069 root         0 SW   <span class="o">[</span>RTW_CMD_THREAD]
+ 1089 root         0 SW   <span class="o">[</span>SensorIfThreadW]
+ 1100 root         0 SW   <span class="o">[</span>IspDriverThread]
+ 1118 root         0 SW   <span class="o">[</span>kworker/u2:2]
+ 1249 root     10892 S    /usr/bin/timed <span class="nt">-f</span>
+ 1262 root     26640 S    /usr/bin/media-service <span class="nt">-f</span>
+ 1277 root     17336 S    /usr/bin/storaged <span class="nt">-f</span>
+ 1295 root      3188 S    /usr/bin/alarm_delivery <span class="nt">-f</span>
+ 1316 root      3468 S    /usr/bin/camScheduled
+ 1365 root      6740 S    /usr/bin/relayd
+ 1379 root      2676 S    /usr/bin/ucloud
+ 1397 root      2808 S    /usr/bin/ulinkied
+ 1438 root         0 DWN  <span class="o">[</span>mi_log]
+ 1439 root         0 DW   <span class="o">[</span>vif0_P0_MAIN]
+ 1440 root         0 DW   <span class="o">[</span>vif1_P0_MAIN]
+ 1441 root         0 DW   <span class="o">[</span>vpe0_P0_MAIN]
+ 1442 root         0 DW   <span class="o">[</span>vpe0_P1_MAIN]
+ 1443 root         0 DW   <span class="o">[</span>vpe0_P2_MAIN]
+ 1444 root         0 DWN  <span class="o">[</span>VEP_DumpTaskThr]
+ 1449 root         0 DW   <span class="o">[</span>venc0_P0_MAIN]
+ 1450 root         0 DW   <span class="o">[</span>venc1_P0_MAIN]
+ 1453 root         0 SW   <span class="o">[</span>RGN BUF WQ]
+ 1459 root         0 DW   <span class="o">[</span>ai0_P0_MAIN]
+ 1503 root      8376 S    /usr/bin/speaker
+ 1521 root     19768 S    /usr/bin/detection <span class="nt">-f</span>
+ 1549 root      1440 S    hostapd /etc/hostapd.conf <span class="nt">-B</span>
+ 1573 root       988 S    udhcpc <span class="nt">-p</span> /var/run/udhcpc-br-lan.pid <span class="nt">-s</span> /lib/netconf
+ 1583 root         0 DW   <span class="o">[</span>divp0_P0_MAIN]
+ 1669 nobody     852 S    /usr/sbin/dnsmasq <span class="nt">-C</span> /var/etc/dnsmasq.conf <span class="nt">-k</span> <span class="nt">-x</span> /va
+ 1885 root       988 R    ps
+root@EC70:/#
+root@EC70:/# netstat <span class="nt">-peanut</span>
+
+Active Internet connections <span class="o">(</span>servers and established<span class="o">)</span>
+Proto Recv-Q Send-Q Local Address           Foreign Address         State       PID/Program name
+tcp        0      0 0.0.0.0:17443           0.0.0.0:<span class="k">*</span>               LISTEN      1277/storaged
+tcp        0      0 0.0.0.0:18443           0.0.0.0:<span class="k">*</span>               LISTEN      1503/speaker
+tcp        0      0 0.0.0.0:10443           0.0.0.0:<span class="k">*</span>               LISTEN      1397/ulinkied
+tcp        0      0 0.0.0.0:9999            0.0.0.0:<span class="k">*</span>               LISTEN      1397/ulinkied
+tcp        0      0 127.0.0.1:8081          0.0.0.0:<span class="k">*</span>               LISTEN      1503/speaker
+tcp        0      0 0.0.0.0:19443           0.0.0.0:<span class="k">*</span>               LISTEN      1262/media-service
+tcp        0      0 0.0.0.0:53              0.0.0.0:<span class="k">*</span>               LISTEN      1669/dnsmasq
+tcp        0      0 127.0.0.1:25175         0.0.0.0:<span class="k">*</span>               LISTEN      1295/alarm_delivery
+tcp        0      0 127.0.0.1:8088          0.0.0.0:<span class="k">*</span>               LISTEN      1277/storaged
+netstat: /proc/net/tcp6: No such file or directory
+udp        0      0 0.0.0.0:9999            0.0.0.0:<span class="k">*</span>                           1397/ulinkied
+udp        0      0 0.0.0.0:53              0.0.0.0:<span class="k">*</span>                           1669/dnsmasq
+udp        0      0 0.0.0.0:67              0.0.0.0:<span class="k">*</span>                           1669/dnsmasq
+udp        0      0 0.0.0.0:68              0.0.0.0:<span class="k">*</span>                           1573/udhcpc
+netstat: /proc/net/udp6: No such file or directory
+</code></pre></div></div>
+
+<p>Afterwards I connected the Kasa app to the device and it asked to update
+the firmware and the uart printed the url where the firmware came from
+which is nice. <a href="http://download.tplinkcloud.com/firmware/EC70v2-up-ver2-3-14-P120220902-rel69498-signed_1663205839148.bin">Download
+Link</a></p>
+
+<p>After connecting the camera to the app and the internet here are the ps
+and netstat results:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>root@EC70:/# ps
+
+  PID USER       VSZ STAT COMMAND
+    1 root      1280 S    /sbin/procd
+    2 root         0 SW   <span class="o">[</span>kthreadd]
+    3 root         0 SW   <span class="o">[</span>ksoftirqd/0]
+    4 root         0 SW   <span class="o">[</span>kworker/0:0]
+    5 root         0 SW&lt;  <span class="o">[</span>kworker/0:0H]
+    6 root         0 SW   <span class="o">[</span>kworker/u2:0]
+    7 root         0 SW   <span class="o">[</span>rcu_preempt]
+    8 root         0 SW   <span class="o">[</span>rcu_sched]
+    9 root         0 SW   <span class="o">[</span>rcu_bh]
+   10 root         0 SW&lt;  <span class="o">[</span>lru-add-drain]
+   11 root         0 SW   <span class="o">[</span>watchdog/0]
+   12 root         0 SW   <span class="o">[</span>kdevtmpfs]
+   13 root         0 SW&lt;  <span class="o">[</span>netns]
+   14 root         0 SW   <span class="o">[</span>kworker/u2:1]
+  147 root         0 SW   <span class="o">[</span>oom_reaper]
+  148 root         0 SW&lt;  <span class="o">[</span>writeback]
+  150 root         0 SW   <span class="o">[</span>kcompactd0]
+  151 root         0 SW&lt;  <span class="o">[</span>crypto]
+  152 root         0 SW&lt;  <span class="o">[</span>bioset]
+  154 root         0 SW&lt;  <span class="o">[</span>kblockd]
+  178 root         0 SW   <span class="o">[</span>kworker/0:1]
+  179 root         0 SW&lt;  <span class="o">[</span>cfg80211]
+  181 root         0 SW&lt;  <span class="o">[</span>watchdogd]
+  204 root         0 SW   <span class="o">[</span>kswapd0]
+  280 root         0 SW   <span class="o">[</span>irq/59-GPIO66]
+  283 root         0 SW&lt;  <span class="o">[</span>bioset]
+  294 root         0 DW   <span class="o">[</span>ehci_monitor]
+  306 root         0 SW   <span class="o">[</span>urdma_tx_thread]
+  329 root         0 SW   <span class="o">[</span>kworker/0:2]
+  333 root         0 SW&lt;  <span class="o">[</span>bioset]
+  338 root         0 SW&lt;  <span class="o">[</span>bioset]
+  343 root         0 SW&lt;  <span class="o">[</span>bioset]
+  348 root         0 SW&lt;  <span class="o">[</span>bioset]
+  353 root         0 SW&lt;  <span class="o">[</span>bioset]
+  358 root         0 SW&lt;  <span class="o">[</span>bioset]
+  363 root         0 SW&lt;  <span class="o">[</span>bioset]
+  368 root         0 SW&lt;  <span class="o">[</span>bioset]
+  373 root         0 SW&lt;  <span class="o">[</span>bioset]
+  378 root         0 SW&lt;  <span class="o">[</span>bioset]
+  383 root         0 SW&lt;  <span class="o">[</span>bioset]
+  394 root         0 SW   <span class="o">[</span>monitor_temp]
+  406 root         0 SW&lt;  <span class="o">[</span>kworker/0:1H]
+  409 root         0 SWN  <span class="o">[</span>jffs2_gcd_mtd5]
+  481 root       816 S    /sbin/ubusd
+  482 root       992 S    /bin/ash <span class="nt">--login</span>
+ 1234 root         0 SW   <span class="o">[</span>RTW_CMD_THREAD]
+ 1425 root      1328 S    /sbin/ledd
+ 1462 root      2688 S    /sbin/wirelessd
+ 1474 root      2236 S    /sbin/utplogd
+ 1558 root         0 SW   <span class="o">[</span>SensorIfThreadW]
+ 1569 root         0 SW   <span class="o">[</span>IspDriverThread]
+ 1604 root         0 SW   <span class="o">[</span>kworker/u2:2]
+ 1642 root      1228 S    wpa_supplicant <span class="nt">-D</span> nl80211,wext <span class="nt">-i</span> wlan0 <span class="nt">-b</span> br-lan <span class="nt">-c</span>
+ 1700 root     10892 S    /usr/bin/timed <span class="nt">-f</span>
+ 1713 root         0 SW&lt;  <span class="o">[</span>bioset]
+ 1714 root         0 SW   <span class="o">[</span>mmcqd/0]
+ 1719 root     26644 S    /usr/bin/media-service <span class="nt">-f</span>
+ 1743 root     20012 S    /usr/bin/storaged <span class="nt">-f</span>
+ 1763 root      3188 S    /usr/bin/alarm_delivery <span class="nt">-f</span>
+ 1780 root      3472 S    /usr/bin/camScheduled
+ 1823 root      6820 S    /usr/bin/relayd
+ 1835 root      2852 S    /usr/bin/ucloud
+ 1861 root      2836 S    /usr/bin/ulinkied
+ 1876 root      4532 S    /usr/bin/p2pd
+ 1956 root         0 DWN  <span class="o">[</span>mi_log]
+ 1972 root         0 DW   <span class="o">[</span>vif0_P0_MAIN]
+ 1976 root         0 DW   <span class="o">[</span>vif1_P0_MAIN]
+ 1978 root         0 DW   <span class="o">[</span>vpe0_P0_MAIN]
+ 1979 root         0 DW   <span class="o">[</span>vpe0_P1_MAIN]
+ 1981 root         0 DW   <span class="o">[</span>vpe0_P2_MAIN]
+ 1985 root         0 DWN  <span class="o">[</span>VEP_DumpTaskThr]
+ 1989 root         0 DW   <span class="o">[</span>venc0_P0_MAIN]
+ 1991 root         0 DW   <span class="o">[</span>venc1_P0_MAIN]
+ 2009 root         0 SW   <span class="o">[</span>RGN BUF WQ]
+ 2013 root         0 DW   <span class="o">[</span>ai0_P0_MAIN]
+ 2158 root       988 S    udhcpc <span class="nt">-p</span> /var/run/udhcpc-br-lan.pid <span class="nt">-s</span> /lib/netconf
+ 2168 root      8392 S    /usr/bin/speaker
+ 2194 root     19768 S    /usr/bin/detection <span class="nt">-f</span>
+ 2266 root         0 DW   <span class="o">[</span>divp0_P0_MAIN]
+ 2884 root       988 R    ps
+root@EC70:/#
+root@EC70:/# netstatimed <span class="o">(</span>1748<span class="o">)</span>: drop_caches: 3
+t <span class="nt">-peanut</span>
+
+Active Internet connections <span class="o">(</span>servers and established<span class="o">)</span>
+Proto Recv-Q Send-Q Local Address           Foreign Address         State       PID/Program name
+tcp        0      0 127.0.0.1:25175         0.0.0.0:<span class="k">*</span>               LISTEN      1763/alarm_delivery
+tcp        0      0 127.0.0.1:8088          0.0.0.0:<span class="k">*</span>               LISTEN      1743/storaged
+tcp        0      0 127.0.0.1:929           0.0.0.0:<span class="k">*</span>               LISTEN      1876/p2pd
+tcp        0      0 0.0.0.0:17443           0.0.0.0:<span class="k">*</span>               LISTEN      1743/storaged
+tcp        0      0 0.0.0.0:18443           0.0.0.0:<span class="k">*</span>               LISTEN      2168/speaker
+tcp        0      0 0.0.0.0:10443           0.0.0.0:<span class="k">*</span>               LISTEN      1861/ulinkied
+tcp        0      0 0.0.0.0:9999            0.0.0.0:<span class="k">*</span>               LISTEN      1861/ulinkied
+tcp        0      0 127.0.0.1:8081          0.0.0.0:<span class="k">*</span>               LISTEN      2168/speaker
+tcp        0      0 0.0.0.0:19443           0.0.0.0:<span class="k">*</span>               LISTEN      1719/media-service
+tcp        0      0 192.168.1.155:42516     52.6.210.145:443        TIME_WAIT   -
+tcp        0      0 192.168.1.155:46084     52.6.127.145:443        ESTABLISHED 1835/ucloud
+netstat: /proc/net/tcp6: No such file or directory
+udp        0      0 192.168.1.155:57764     8.8.8.8:53              ESTABLISHED 1835/ucloud
+udp        0      0 192.168.1.155:45124     192.168.1.1:53          ESTABLISHED 1719/media-service
+udp        0      0 192.168.1.155:45916     8.8.8.8:53              ESTABLISHED 1719/media-service
+udp        0      0 192.168.1.155:50016     8.8.8.8:53              ESTABLISHED 2168/speaker
+udp        0      0 192.168.1.155:35565     192.168.1.1:53          ESTABLISHED 1861/ulinkied
+udp        0      0 192.168.1.155:51571     192.168.1.1:53          ESTABLISHED 1743/storaged
+udp        0      0 192.168.1.155:49145     192.168.1.1:53          ESTABLISHED 1835/ucloud
+udp        0      0 192.168.1.155:51582     8.8.8.8:53              ESTABLISHED 1861/ulinkied
+udp        0      0 192.168.1.155:54665     8.8.8.8:53              ESTABLISHED 1823/relayd
+udp        0      0 192.168.1.155:41225     192.168.1.1:53          ESTABLISHED 2168/speaker
+udp        0      0 192.168.1.155:39310     192.168.1.1:53          ESTABLISHED 1823/relayd
+udp        0      0 0.0.0.0:9999            0.0.0.0:<span class="k">*</span>                           1861/ulinkied
+udp        0      0 192.168.1.155:42642     8.8.8.8:53              ESTABLISHED 1743/storaged
+netstat: /proc/net/udp6: No such file or directory
+</code></pre></div></div>
+
+<p>The first ps had hostapd and dnsmasq running and the second ps had
+wpa_suplicant and p2pd running, everything else appears to be the same.
+p2pd file does not exist on the filesystem before the firmware update
+which is interesting…</p>
+
+<p>An nmap from the wifi shows these ports open which confirms what we saw
+in the netstat:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>PORT      STATE SERVICE
+9999/tcp  open  abyss
+10443/tcp open  unknown
+17443/tcp open  unknown
+18443/tcp open  unknown
+19443/tcp open  unknown
+</code></pre></div></div>
